@@ -1,17 +1,18 @@
 # + read image
-# + find height and wide
+# + find height and width
 # + find cell size
 # + crop cells
-# +	add cells to list
+# + add cells to list
+# the file should be in the same folder as the function
 
 import cv2
 
 
-def get_cutting_pictures(row, column, image_name):
-    # read image
-    image = cv2.imread(image_name)
+def get_cutting_pictures(row, column, file_name):
+    # read image, file_name as string
+    image = cv2.imread(file_name)
 
-    # find height and wide
+    # find height and width
     width = image.shape[0]
     height = image.shape[1]
 
@@ -21,7 +22,7 @@ def get_cutting_pictures(row, column, image_name):
 
     # crop cells
     x = 0
-    cropped_cell = []
+    cropped_pictures = []
     while x + cell_height <= height:
         y = 0
         while y + cell_width <= width:
@@ -29,11 +30,6 @@ def get_cutting_pictures(row, column, image_name):
             y += cell_width
 
             # add cells to list
-            cropped_cell.append(cropped)
+            cropped_pictures.append(cropped)
         x += cell_height
-    return cropped_cell
-
-
-cell_list = get_cutting_pictures(3, 8, "72.jpg")
-
-print(cell_list)
+    return cropped_pictures
