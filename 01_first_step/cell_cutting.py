@@ -12,12 +12,12 @@ def get_cutting_pictures(row, column, image_name):
     image = cv2.imread(image_name)
 
     # find height and wide
-    height = image.shape[0]
-    width = image.shape[1]
+    width = image.shape[0]
+    height = image.shape[1]
 
     # find cell size
-    cell_height = height // row
-    cell_width = width // column
+    cell_height = height // column
+    cell_width = width // row
 
     # crop cells
     x = 0
