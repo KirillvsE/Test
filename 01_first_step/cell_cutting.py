@@ -1,12 +1,12 @@
-# + read image
-# + find height and width
-# + find cell size
-# + crop cells
-# + add cells to list
-# + boundary conditions check
-# + add border
-# + add gap
-# the file should be in the same folder as the function
+
+
+
+
+
+
+
+
+
 
 import cv2
 
