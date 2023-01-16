@@ -24,7 +24,7 @@ def crop_image(file_name, rows=1, columns=1, border=0, gap=0):
         print("outside of pixel sizes or pixel range")
     elif border < 0 or border >= width // 2 or border >= height // 2:
         print("border out of range")
-    elif gap < 0 or ((height - gap * rows) // rows) <= 1 or ((width - gap * columns) // columns) <= 1:
+    elif gap < 0 or ((height - gap * (rows - 1)) // rows) < 1 or ((width - gap * (columns - 1)) // columns) < 1:
         print("gap out of range")
     else:
         # border
@@ -35,8 +35,8 @@ def crop_image(file_name, rows=1, columns=1, border=0, gap=0):
         width = bordered_image.shape[1]
 
         # find cell size
-        cell_height = (height - gap * rows) // rows
-        cell_width = (width - gap * columns) // columns
+        cell_height = (height - gap * (rows - 1)) // rows
+        cell_width = (width - gap * (columns - 1)) // columns
 
         # crop cells
         cropped_pictures = []
