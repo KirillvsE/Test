@@ -42,9 +42,10 @@ def crop_image(file_name, rows=1, columns=1, border=0, gap=0):
         cropped_pictures = []
 
         x = 0
-        for count_rows in range(columns):
+        y = 0
+        for count_columns in range(columns):
             y = 0
-            for count_columns in range(rows):
+            for count_rows in range(rows):
                 cropped = bordered_image[y:y + cell_height, x:x + cell_width]
                 cropped_pictures.append(cropped)
                 y = y + cell_height + gap
@@ -53,15 +54,13 @@ def crop_image(file_name, rows=1, columns=1, border=0, gap=0):
         # adding incomplete cells
         if x < width:
             y = 0
-            for count_columns in range(rows):
-                print(x, ":", y)
+            for count_rows in range(rows):
                 cropped = bordered_image[y:y + cell_height, x:width]
                 cropped_pictures.append(cropped)
                 y = y + cell_height + gap
         if y < height:
             x = 0
-            for count_rows in range(columns):
-                print(x, ":", y)
+            for count_columns in range(columns):
                 cropped = bordered_image[y:height, x:x + cell_width]
                 cropped_pictures.append(cropped)
                 x = x + cell_height + gap
