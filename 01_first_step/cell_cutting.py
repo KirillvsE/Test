@@ -2,7 +2,7 @@
 import cv2
 
 
-def crop_image(file_name, rows=1, columns=1, border=0, gap=0):
+def crop_image(file_name, rows=1, columns=1, border=0, gap=0, cell=(None, None)):
     # read image, file_name as string
     image = cv2.imread(file_name)
 
@@ -27,9 +27,17 @@ def crop_image(file_name, rows=1, columns=1, border=0, gap=0):
             print("gap out of range or ")
 
         else:
-            # find cell size
-            cell_height = (height - gap * (rows - 1)) // rows
-            cell_width = (width - gap * (columns - 1)) // columns
+            if cell != (None, None):
+                cell_width = cell[0]
+                cell_height = cell[1]
+
+                rows = height // (cell_height + gap)
+                columns = width // (cell_width + gap)
+
+            else:
+                # find cell size
+                cell_height = (height - gap * (rows - 1)) // rows
+                cell_width = (width - gap * (columns - 1)) // columns
 
             # crop cells
             cropped_pictures = []
